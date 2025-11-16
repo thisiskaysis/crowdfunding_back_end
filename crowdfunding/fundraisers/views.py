@@ -1,7 +1,6 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse, HttpResponse
-from django.views import View
+from rest_framework import generics
 from .models import Campaign, Donation
+from .serializers import CampaignSerializer, DonationSerializer
 
 def campaign_list(request):
     campaigns = Campaign.objects.all().values('id', 'title', 'description', 'goal_amount')
