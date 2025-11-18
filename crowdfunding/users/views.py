@@ -30,7 +30,7 @@ class CustomUserDetail(APIView):
         serializer = CustomUserSerializer(user)
         return Response(serializer.data)
 
-    def put(self, request, pk, format=None):
+    def put(self, request, pk, format=None): #PUT/POST/PATCH????
         user = self.get_object(pk)
         serializer = CustomUserSerializer(user, data=request.data, partial=True)
         if serializer.is_valid():
@@ -69,7 +69,7 @@ class ChildDetail(APIView):
         serializer = ChildSerializer(child)
         return Response(serializer.data)
 
-    def put(self, request, pk, format=None):
+    def put(self, request, pk, format=None): #PUT/POST/PATCH???
         child = self.get_object(pk)
         serializer = ChildSerializer(child, data=request.data, partial=True)
         if serializer.is_valid():
