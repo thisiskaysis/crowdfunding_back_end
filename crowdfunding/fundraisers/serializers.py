@@ -11,7 +11,11 @@ class PledgeSerializer(serializers.ModelSerializer):
 class PledgeDetailSerializer(PledgeSerializer):
 
     def update(self, instance, validated_data):
+        instance.amount = validated_data.get('amount', instance.title)
         instance.comment = validated_data.get('comment', instance.title)
+        instance.anonymous = validated_data.get('anonymous', instance.title)
+        instance.fundraiser = validated_data.get('fundraiser', instance.fundraiser)
+        instance.supporter = validated_data.get('supporter', instance.supporter)
         instance.save()
         return instance
 
