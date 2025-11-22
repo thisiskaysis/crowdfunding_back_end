@@ -8,6 +8,13 @@ class PledgeSerializer(serializers.ModelSerializer):
         model = apps.get_model('fundraisers.Pledge')
         fields = '__all__'
 
+class PledgeDetailSerializer(PledgeSerializer):
+
+    def update(self, instance, validated_data):
+        instance.comment = validated_data.get('comment', instance.title)
+        instance.save()
+        return instance
+
 class FundraiserSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.id')
     
